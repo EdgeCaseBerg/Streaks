@@ -12,4 +12,12 @@ class Streaks extends Controller {
 		Ok(views.html.index("Streaks - Home", habits))
 	}
 
+	def createHabit = Action {
+		Redirect(routes.Streaks.index)
+	}
+
+	def markHabitDone = Action {
+		Redirect(routes.Streaks.index)	
+	}
+
 }

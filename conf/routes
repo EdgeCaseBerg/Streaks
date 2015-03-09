@@ -1,3 +1,5 @@
-GET 	/		@controllers.Streaks.index
+GET 	/					@controllers.Streaks.index
+POST 	/createHabit 		@controllers.Streaks.createHabit
+POST 	/markHabitDone		@controllers.Streaks.markHabitDone
 
 GET /assets/*file controllers.Assets.at(path="/public", file)

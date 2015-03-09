@@ -16,7 +16,7 @@
         <hr>
         <section>
             <h2>New Habit</h2>
-            <form>
+            <form method="POST" action='@routes.Streaks.createHabit'>
                 <label>Habit Name
                     <input placeholder="Type habit name here" type="text" name="habit" />
                 </label>
@@ -43,7 +43,7 @@
                             <td>@habit.name</td>
                             <td><span>@habit.computeStreak</span></td>
                             <td>
-                                <form>
+                                <form method="POST" action='@routes.Streaks.markHabitDone'>
                                     <input type="hidden" name="habit" value="@habit.name">
                                     <button>(✓)</button>
                                 </form>
@@ -51,7 +51,6 @@
                         </tr>
                     }
                     </tbody>
-                    
                 </table>
             }
             
