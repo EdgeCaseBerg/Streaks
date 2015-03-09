@@ -5,10 +5,43 @@ html {
 	text-shadow: 0px 0px 3px #BADA55;
 }
 
-header {
+h1 {
 	text-align: center;
 }
 
 hr {
 	border-color: #ff0000;
+}
+
+input[type="text"] {
+	background: lightgrey;
+	border: #0000ff thin solid;
+	color: black;
+}
+input[type="text"]:focus {
+	border: #00ff00 thin solid;
+}
+
+/* Placeholder text color: https://stackoverflow.com/questions/2610497/change-an-inputs-html5-placeholder-color-with-css; */
+::-webkit-input-placeholder { /* WebKit browsers */	color:    #909;}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */  	color:    #909;}
+::-moz-placeholder { /* Mozilla Firefox 19+ */		color:    #909;}
+:-ms-input-placeholder { /* Internet Explorer 10+ */color:    #909;}
+
+table tbody td + td {
+	text-align: center;
+}
+
+table button,input[type="submit"] {
+	padding: 5px;
+	cursor: pointer;
+	background: #333333;
+	border: #666 1px solid;
+	color: #CCCCCC;
+}
+
+table button:hover, input[type="submit"]:hover {
+	background: #555;
+	border: #888 1px solid;
+	color: #BADA55;
 }

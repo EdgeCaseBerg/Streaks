@@ -1,4 +1,4 @@
-@(title: String = "Home", habits: scala.List[String])
+@(title: String = "Home", habits: scala.List[Habit])
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -10,7 +10,7 @@
         <header>
             <h1>Streaks - Personal Habit Tracker</h1>
             <p>
-                Welcome to <emph>Streaks</emph>, this extremely simple tool exists to help you keep track of things you've done in a row! It's perfect for starting new daily habits! 
+                Welcome to <emph>Streaks</emph>, this extremely simple tool exists to help you keep track of things you've done in a row! It's perfect for starting new daily habits! Make a new habit with the form below, then press the (✓) each day you accomplish your goal.
             </p>
         </header>
         <hr>
@@ -18,7 +18,7 @@
             <h2>New Habit</h2>
             <form>
                 <label>Habit Name
-                    <input type="text" name="habit" />
+                    <input placeholder="Type habit name here" type="text" name="habit" />
                 </label>
                 <input type="submit" value="Start">
             </form>
@@ -29,11 +29,29 @@
             @if(habits.isEmpty) {
                 No habits yet, create some to view summary
             } else {
-                <ul>
-                @for(habit <- habits){
-                    <li>@habit</li>
-                }
-                </ul>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Habit</th>
+                            <th>Current Streak</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @for(habit <- habits){
+                        <tr>
+                        <td>@habit.name</td>
+                        <td><span>@habit.computeStreak</span></td>
+                        <td>
+                            <form>
+                                <input type="hidden" name="habit" value="@habit.name">
+                                <button>(✓)</button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                    }
+                </table>
             }
             
         </section>
