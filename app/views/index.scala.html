@@ -1,4 +1,4 @@
-@(title: String = "Home")
+@(title: String = "Home", habits: scala.List[String])
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -15,7 +15,27 @@
         </header>
         <hr>
         <section>
-
+            <h2>New Habit</h2>
+            <form>
+                <label>Habit Name
+                    <input type="text" name="habit" />
+                </label>
+                <input type="submit" value="Start">
+            </form>
+        </section>
+        <section>
+            <h2>Habit Summary</h2>
+            
+            @if(habits.isEmpty) {
+                No habits yet, create some to view summary
+            } else {
+                <ul>
+                @for(habit <- habits){
+                    <li>@habit</li>
+                }
+                </ul>
+            }
+            
         </section>
     </body>
 </html>
