@@ -40,17 +40,18 @@
                     <tbody>
                     @for(habit <- habits){
                         <tr>
-                        <td>@habit.name</td>
-                        <td><span>@habit.computeStreak</span></td>
-                        <td>
-                            <form>
-                                <input type="hidden" name="habit" value="@habit.name">
-                                <button>(✓)</button>
-                            </form>
-                        </td>
-                    </tr>
-                    </tbody>
+                            <td>@habit.name</td>
+                            <td><span>@habit.computeStreak</span></td>
+                            <td>
+                                <form>
+                                    <input type="hidden" name="habit" value="@habit.name">
+                                    <button>(✓)</button>
+                                </form>
+                            </td>
+                        </tr>
                     }
+                    </tbody>
+                    
                 </table>
             }
             
