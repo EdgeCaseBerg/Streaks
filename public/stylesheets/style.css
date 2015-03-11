@@ -45,3 +45,8 @@ table button:hover, input[type="submit"]:hover {
 	border: #888 1px solid;
 	color: #BADA55;
 }
+
+
+table td span {
+	font-weight: bold;
+}
