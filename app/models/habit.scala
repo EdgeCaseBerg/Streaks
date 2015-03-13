@@ -15,7 +15,6 @@ class Habit(val name: String, val daysDone: List[Int]) {
 				}
 				streak = 0
 			}
-			println(s"$topStreak and $streak")
 		}
 		/* Don't forget to count an ongoing streak */
 		if (streak > topStreak) {
