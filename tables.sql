@@ -15,7 +15,7 @@ CREATE TABLE habits (
 CREATE TABLE days (
     id INT(12) NOT NULL auto_increment PRIMARY KEY,
     habit_id INT(12) NOT NULL,
-    created_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    epoch_day BIGINT NOT NULL,
     INDEX (`habit_id`),
     CONSTRAINT FOREIGN KEY (`habit_id`) REFERENCES `habits` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE InnoDB;
