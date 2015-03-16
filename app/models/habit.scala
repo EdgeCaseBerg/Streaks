@@ -1,5 +1,9 @@
 package models
 
+import slick.driver.MySQLDriver.simple._
+import scala.slick.jdbc.StaticQuery.interpolation
+import scala.slick.jdbc.GetResult
+
 class Habit(val name: String, val daysDone: List[Int]) {
 	def computeStreak(): Int = {
 		/* iterate over daysDone and look for gaps and such */
@@ -21,5 +25,21 @@ class Habit(val name: String, val daysDone: List[Int]) {
 			topStreak = streak +1
 		}
 		topStreak
+	}
+}
+
+//86400
+object Habit {
+	val db = Database.forURL("jdbc:mysql://localhost/streaks_db",driver="com.mysql.jdbc.Driver", user="scala", password="functional")
+
+	def getHabits() : List[Habit] = {
+		val query = sql"select id, description from habits".as[(Int,String)]
+		val people : List[Habit] = db.withSession{ implicit session =>
+  			query.list.map( x => new Habit(x._2, List()) )
+		}
+
+		// get the days
+
+		people
 	}
 }
