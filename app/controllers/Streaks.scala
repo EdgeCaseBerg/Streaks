@@ -6,9 +6,7 @@ import play.api.mvc._
 class Streaks extends Controller {
 	
 	def index = Action {
-		val habits = scala.List[models.Habit](
-			new models.Habit(1,"Test", List(1,2,3,5,6,7,8))
-			)
+		val habits = models.Habit.getHabits()
 		Ok(views.html.index("Streaks - Home", habits))
 	}
 
