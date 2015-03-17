@@ -19,3 +19,5 @@ CREATE TABLE days (
     INDEX (`habit_id`),
     CONSTRAINT FOREIGN KEY (`habit_id`) REFERENCES `habits` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE InnoDB;
+
+ALTER TABLE `days` ADD UNIQUE INDEX `ix_days` (`habit_id`, `epoch_day`);
