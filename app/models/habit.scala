@@ -28,7 +28,6 @@ class Habit(val id : Int, val name: String, val daysDone: List[Int]) {
 	}
 }
 
-//86400
 object Habit {
 	val db = Database.forURL("jdbc:mysql://localhost/streaks_db",driver="com.mysql.jdbc.Driver", user="scala", password="functional")
 
