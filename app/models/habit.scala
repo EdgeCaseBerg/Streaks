@@ -4,7 +4,7 @@ import slick.driver.MySQLDriver.simple._
 import scala.slick.jdbc.StaticQuery.interpolation
 import scala.slick.jdbc.GetResult
 
-class Habit(val id : Int, val name: String, val daysDone: List[Int]) {
+class Habit(val id : Int, val name: String = "", val daysDone: List[Int] = List()) {
 	def computeStreak(): Int = {
 		/* iterate over daysDone and look for gaps and such */
 		val sorted = daysDone.sortWith(_ < _)
@@ -48,7 +48,7 @@ object Habit {
 		val today = java.util.Calendar.getInstance().getTimeInMillis() / 86400000
 
 		val checkIfExists = sql"select id from days where habit_id = ${habit.id} and epoch_day = ${today}".as[Int]
-		val insertIt = sqlu"insert into days (epoch_day) values ($today)"
+		val insertIt = sqlu"insert into days (habit_id, epoch_day) values (${habit.id},$today)"
 		db.withSession { implicit session => 
 			val exists = !checkIfExists.list.isEmpty
 
