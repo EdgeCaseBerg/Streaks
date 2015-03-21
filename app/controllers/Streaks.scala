@@ -13,13 +13,22 @@ class Streaks extends Controller {
       	"id" -> number
     	)(MarkForm.apply)(MarkForm.unapply)
   	)
+
+	case class CreateForm(name: String)
+  	val createForm = Form(
+  		mapping(
+  			"name" -> text
+  		)(CreateForm.apply)(CreateForm.unapply)
+  	)
 	
 	def index = Action {
 		val habits = models.Habit.getHabits()
 		Ok(views.html.index("Streaks - Home", habits))
 	}
 
-	def createHabit = Action {
+	def createHabit = Action { implicit request =>
+		val habitName = createForm.bindFromRequest.get
+		models.Habit.saveHabit(new models.Habit(-1, habitName.name))
 		Redirect(routes.Streaks.index)
 	}
 
