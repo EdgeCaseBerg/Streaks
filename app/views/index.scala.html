@@ -33,6 +33,7 @@
                     <thead>
                         <tr>
                             <th>Habit</th>
+                            <th>Current Streak</th>
                             <th>Highest Streak</th>
                             <th></th>
                         </tr>
@@ -41,6 +42,7 @@
                     @for(habit <- habits){
                         <tr>
                             <td>@habit.name</td>
+                            <td><span>@habit.computeCurrentStreak</span></td>
                             <td><span>@habit.computeHighestStreak</span></td>
                             <td>
                                 <form method="POST" action='@routes.Streaks.markHabitDone'>
