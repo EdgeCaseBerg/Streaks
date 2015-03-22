@@ -41,7 +41,7 @@
                     @for(habit <- habits){
                         <tr>
                             <td>@habit.name</td>
-                            <td><span>@habit.computeStreak</span></td>
+                            <td><span>@habit.computeHighestStreak</span></td>
                             <td>
                                 <form method="POST" action='@routes.Streaks.markHabitDone'>
                                     <input type="hidden" name="id" value="@habit.id">

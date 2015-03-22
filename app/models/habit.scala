@@ -5,7 +5,7 @@ import scala.slick.jdbc.StaticQuery.interpolation
 import scala.slick.jdbc.GetResult
 
 class Habit(val id : Int, val name: String = "", val daysDone: List[Int] = List()) {
-	def computeStreak(): Int = {
+	def computeHighestStreak(): Int = {
 		/* iterate over daysDone and look for gaps and such */
 		val sorted = daysDone.sortWith(_ < _)
 		var streak = 0
@@ -25,6 +25,24 @@ class Habit(val id : Int, val name: String = "", val daysDone: List[Int] = List(
 			topStreak = streak +1
 		}
 		topStreak
+	}
+
+	def computeCurrentStreak(): Int = {
+		val sorted = daysDone.sortWith(_ > _)
+		println(sorted)
+		var streak = 0
+		var broken = 0
+		for (i <- 0 until daysDone.length-1 if (broken == 0)) {
+			if (sorted(i) - sorted(i+1) == 1) {
+				streak += 1
+			} else {
+				broken = 1
+			}
+		}
+		if (broken == 0) {
+			streak += 1
+		}
+		streak
 	}
 }
 
