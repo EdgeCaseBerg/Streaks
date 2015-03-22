@@ -21,7 +21,7 @@ class Habit(val id : Int, val name: String = "", val daysDone: List[Int] = List(
 			}
 		}
 		/* Don't forget to count an ongoing streak */
-		if (streak > topStreak) {
+		if (streak > topStreak || sorted.length == 0) {
 			topStreak = streak +1
 		}
 		topStreak
@@ -29,7 +29,6 @@ class Habit(val id : Int, val name: String = "", val daysDone: List[Int] = List(
 
 	def computeCurrentStreak(): Int = {
 		val sorted = daysDone.sortWith(_ > _)
-		println(sorted)
 		var streak = 0
 		var broken = 0
 		for (i <- 0 until daysDone.length-1 if (broken == 0)) {
